@@ -1,0 +1,16 @@
+{
+    "name": "omnispear/omnicron-client",
+    "description": "Cron job & process monitor",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Zachary Sluder",
+            "email": "zsluder@omnispear.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "vlucas/phpdotenv": "^2.4",
+        "nesbot/carbon": "^1.26"
+    }
+}
