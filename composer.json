@@ -10,7 +10,11 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "vlucas/phpdotenv": "^2.4",
-        "nesbot/carbon": "^1.26"
+        "nesbot/carbon": "^1.25"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnispear\\OmniCron\\": "src"
+        }
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
-namespace OmniCron;
+namespace Omnispear\OmniCron;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
-require "vendor/nesbot/carbon/src/Carbon/Carbon.php";
-require "vendor/guzzlehttp/guzzle/src/Client.php";
-
 class OmniCron
 {
     private $client;
+    private $config;
 
     public function __construct()
     {
+        $this->config = include ('config.php');
+
         $this->client = new Client([
-            'base_uri' => getenv('OMNICRON_API'),
+            'base_uri' => $this->config['OMNICRON_API'],
         ]);
     }
 
