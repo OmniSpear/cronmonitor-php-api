@@ -1,5 +1,5 @@
 {
-    "name": "omnispear/cronmonitor-client",
+    "name": "omnispear/cronmonitor",
     "description": "Cron job & process monitor",
     "version": "1.0.0",
     "authors": [
