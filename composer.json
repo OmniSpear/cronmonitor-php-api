@@ -1,5 +1,5 @@
 {
-    "name": "omnispear/omnicron-client",
+    "name": "omnispear/cronmonitor-client",
     "description": "Cron job & process monitor",
     "version": "1.0.0",
     "authors": [
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Omnispear\\OmniCron\\": "src"
+            "Omnispear\\CronMonitor\\": "src"
         }
     }
 }

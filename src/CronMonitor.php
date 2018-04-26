@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnispear\OmniCron;
+namespace Omnispear\CronMonitor;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
-class OmniCron
+class CronMonitor
 {
     private $client;
     private $config;
@@ -15,7 +15,7 @@ class OmniCron
         $this->config = include ('config.php');
 
         $this->client = new Client([
-            'base_uri' => $this->config['OMNICRON_API'],
+            'base_uri' => $this->config['CRONMONITOR_API'],
         ]);
     }
 
