@@ -32,11 +32,7 @@ class CronMonitor
             ]
         ])->getBody()->getContents());
 
-        if ($response->status !== 200) {
-
-        }
-
-        return $response->uuid;
+        return $response->status === 200 ? $response->uuid : $response;
     }
 
     /**
