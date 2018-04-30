@@ -22,13 +22,12 @@ class CronMonitor
     /**
      * Notify API an execution has started
      */
-    public function sendStarted($environment, $task_uuid)
+    public function sendStarted($task_uuid, $environment)
     {
-        $response = json_decode($this->client->request('POST', 'started', [
+        $response = json_decode($this->client->request('POST', $task_uuid . '/started', [
             'form_params' => [
-                'task_id' => $task_uuid,
                 'environment' => $environment,
-                'started' => Carbon::now()->toDateTimeString()
+                'start_time' => Carbon::now()->toDateTimeString()
             ]
         ])->getBody()->getContents());
 
@@ -40,12 +39,13 @@ class CronMonitor
      */
     public function sendEnded($execution_uuid)
     {
-        $this->client->request('POST', 'ended', [
+        $response = json_decode($this->client->request('POST', $execution_uuid . '/ended', [
             'form_params' => [
-                'execution_uuid' => $execution_uuid,
-                'ended' => Carbon::now()->toDateTimeString()
+                'end_time' => Carbon::now()->toDateTimeString()
             ]
-        ]);
+        ])->getBody()->getContents());
+
+        return $response->success ?: $response;
     }
 
     /**
@@ -53,12 +53,14 @@ class CronMonitor
      */
     public function sendError($execution_uuid, $error)
     {
-        $this->client->request('POST', 'error', [
+        $response = json_decode($this->client->request('POST', 'error', [
             'form_params' => [
                 'execution_id' => $execution_uuid,
                 'error' => $error,
-                'ended' => Carbon::now()->toDateTimeString()
+                'end_time' => Carbon::now()->toDateTimeString()
             ]
-        ]);
+        ])->getBody()->getContents());
+
+        return $response->success ?: $response;
     }
 }
