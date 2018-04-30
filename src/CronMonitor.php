@@ -37,9 +37,9 @@ class CronMonitor
     /**
      * Notify API an execution has ended
      */
-    public function sendEnded($execution_uuid)
+    public function sendEnded($execution_id)
     {
-        $response = json_decode($this->client->request('POST', $execution_uuid . '/ended', [
+        $response = json_decode($this->client->request('POST', $execution_id . '/ended', [
             'form_params' => [
                 'end_time' => Carbon::now()->toDateTimeString()
             ]
@@ -51,11 +51,11 @@ class CronMonitor
     /**
      * Notify API an execution has resulted in error
      */
-    public function sendError($execution_uuid, $error)
+    public function sendError($execution_id, $error)
     {
         $response = json_decode($this->client->request('POST', 'error', [
             'form_params' => [
-                'execution_id' => $execution_uuid,
+                'execution_id' => $execution_id,
                 'error' => $error,
                 'end_time' => Carbon::now()->toDateTimeString()
             ]
