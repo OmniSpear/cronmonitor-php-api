@@ -61,6 +61,6 @@ class CronMonitor
             ]
         ])->getBody()->getContents());
 
-        return $response->success ?: $response;
+        return $response->success ?: $response->errors;
     }
 }
