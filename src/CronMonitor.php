@@ -24,14 +24,14 @@ class CronMonitor
      */
     public function sendStarted($task_uuid, $environment)
     {
-        $response = json_decode($this->client->request('POST', $task_uuid . '/started', [
+        $response = json_decode($this->client->request('POST', "{$task_uuid}/started", [
             'form_params' => [
                 'environment' => $environment,
                 'start_time' => Carbon::now()->toDateTimeString()
             ]
         ])->getBody()->getContents());
 
-        return $response->success ? $response->data->uuid : $response;
+        return $response->success ? $response->data->id : $response;
     }
 
     /**
@@ -39,7 +39,7 @@ class CronMonitor
      */
     public function sendEnded($execution_id)
     {
-        $response = json_decode($this->client->request('POST', $execution_id . '/ended', [
+        $response = json_decode($this->client->request('POST', "{$execution_id}/ended", [
             'form_params' => [
                 'end_time' => Carbon::now()->toDateTimeString()
             ]
