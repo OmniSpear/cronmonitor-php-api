@@ -7,9 +7,19 @@ use GuzzleHttp\Client;
 
 class CronMonitor
 {
+    /**
+     * @var Client : GuzzleHttp client
+     */
     private $client;
+
+    /**
+     * @var mixed : Configuration settings
+     */
     private $config;
 
+    /**
+     * CronMonitor constructor
+     */
     public function __construct()
     {
         $this->config = include('config.php');
@@ -21,6 +31,11 @@ class CronMonitor
 
     /**
      * Notify API an execution has started
+     *
+     * @param $task_uuid : Unique identifier for task
+     * @param $environment : Environment task is running in
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendStarted($task_uuid, $environment)
     {
@@ -36,6 +51,10 @@ class CronMonitor
 
     /**
      * Notify API an execution has ended
+     *
+     * @param $execution_id : ID of task execution
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendEnded($execution_id)
     {
@@ -50,6 +69,11 @@ class CronMonitor
 
     /**
      * Notify API an execution has resulted in error
+     *
+     * @param $execution_id : ID of task execution
+     * @param $error : Error text of throw exception
+     * @return
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendError($execution_id, $error)
     {
